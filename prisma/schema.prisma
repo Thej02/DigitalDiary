@@ -1,0 +1,72 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Book {
+  id          String    @id @default(uuid())
+  title       String
+  subtitle    String?
+  author      String
+  coverImage  String?
+  theme       String?   @default("classic-walnut")
+  chapters    Chapter[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Chapter {
+  id          String   @id @default(uuid())
+  bookId      String
+  book        Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  title       String
+  order       Int      @default(0)
+  mood        String?  // e.g., "Melancholy & Stillness", "Quiet Convictions"
+  accentColor String?  // e.g., "#5a1a1f" (oxblood), "#1f2d24" (forest cloth), "#2a221b" (worn calfskin)
+  epigraph    String?  @db.Text
+  entries     Entry[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([bookId])
+}
+
+model Entry {
+  id            String    @id @default(uuid())
+  chapterId     String
+  chapter       Chapter   @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  title         String
+  body          String    @db.Text
+  oneLineLesson String    @db.Text
+  dateWritten   DateTime  @default(now())
+  readingTime   Int       @default(4) // estimated reading time in minutes
+  published     Boolean   @default(true)
+  order         Int       @default(0)
+  tags          Tag[]     @relation("EntryTags")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([chapterId])
+  @@index([published])
+  @@index([dateWritten])
+}
+
+model Tag {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  entries   Entry[]  @relation("EntryTags")
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id           String   @id @default(uuid())
+  username     String   @unique
+  passwordHash String
+  role         String   @default("ADMIN")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

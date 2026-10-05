@@ -1,0 +1,235 @@
+/* ========================================================
+   THE DIMLY LIT LIBRARY — DESIGN SYSTEM & VISUAL TOKENS
+   A Melodramatic, Cinematic Private Archive
+   ======================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+:root {
+  /* Fonts */
+  --font-display: 'Cinzel', serif;
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-mono: 'Courier Prime', monospace;
+
+  /* Library Room & Woodwork */
+  --bg-room: #0a0806;
+  --bg-room-gradient: radial-gradient(circle at 50% 30%, #17110c 0%, #0d0907 55%, #050403 100%);
+  --wood-walnut-dark: #190f09;
+  --wood-walnut-base: #28180e;
+  --wood-walnut-light: #3e2719;
+  --wood-walnut-highlight: #543724;
+  --wood-bevel: rgba(255, 200, 140, 0.08);
+  --wood-shadow: rgba(0, 0, 0, 0.85);
+
+  /* Aged Parchment Paper */
+  --parchment-light: #f4ecda;
+  --parchment-base: #ebdcc2;
+  --parchment-dark: #dfcbab;
+  --parchment-border: #c4ae86;
+  --ink-primary: #1e1813;
+  --ink-muted: #54473b;
+  --ink-faint: #847463;
+
+  /* Antique Metals & Leathers */
+  --gold-foil: linear-gradient(135deg, #f5d77f 0%, #d4af37 40%, #aa842b 70%, #f9e29b 100%);
+  --gold-foil-text: #d8b350;
+  --gold-border: #a48232;
+  --gold-shadow: rgba(212, 175, 55, 0.35);
+
+  --leather-oxblood: #54171c;
+  --leather-forest: #1c2b20;
+  --leather-walnut: #2a1a11;
+  --leather-midnight: #131722;
+
+  /* Atmosphere Glows */
+  --lamp-glow: radial-gradient(circle, rgba(255, 185, 95, 0.18) 0%, rgba(220, 130, 45, 0.06) 45%, transparent 75%);
+  --candle-glow: radial-gradient(circle, rgba(255, 130, 40, 0.15) 0%, rgba(180, 70, 20, 0.05) 50%, transparent 80%);
+
+  /* Animation timing */
+  --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-cinematic: 0.75s;
+}
+
+/* Atmosphere Mode: Candlelight */
+body.mode-candlelight {
+  --bg-room-gradient: radial-gradient(circle at 50% 35%, #140d07 0%, #090604 60%, #030202 100%);
+  --lamp-glow: var(--candle-glow);
+  filter: contrast(0.96) brightness(0.92);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-room);
+  color: var(--parchment-base);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  user-select: none;
+}
+
+/* Film Grain Overlay */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Vignette Shadow */
+.room-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: radial-gradient(circle at 50% 45%, transparent 40%, rgba(0, 0, 0, 0.75) 90%, rgba(0, 0, 0, 0.95) 100%);
+}
+
+/* Interactive Lamp Follower */
+.lamp-beam {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 600px;
+  margin-left: -300px;
+  margin-top: -300px;
+  border-radius: 50%;
+  background: var(--lamp-glow);
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity 0.5s ease;
+  mix-blend-mode: screen;
+}
+
+/* Wood Grain Shelf Molding */
+.walnut-shelf-top {
+  background: linear-gradient(180deg, #3d2618 0%, #2b1a10 40%, #1e110a 100%);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 12px 28px rgba(0, 0, 0, 0.9),
+    0 4px 10px rgba(0, 0, 0, 0.6);
+  border-bottom: 2px solid #140b06;
+}
+
+.walnut-shelf-plank {
+  background: linear-gradient(180deg, #442a1b 0%, #2e1a10 15%, #20120b 85%, #150a06 100%);
+  border-top: 1px solid rgba(255, 215, 160, 0.18);
+  border-bottom: 3px solid #0f0703;
+  box-shadow: 
+    0 -3px 8px rgba(0, 0, 0, 0.6),
+    0 14px 24px rgba(0, 0, 0, 0.95);
+}
+
+/* Book Spine Gold Foil Styling */
+.gold-foil-lettering {
+  background: linear-gradient(180deg, #fff2be 0%, #e6bf62 30%, #b28d34 70%, #fedd82 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  letter-spacing: 0.15em;
+  font-family: var(--font-display);
+}
+
+.gold-foil-icon {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8));
+  color: #d4af37;
+}
+
+/* Raised Spine Ribs (Bands) */
+.spine-rib {
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.7) 100%);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+/* Aged Parchment Paper Styling */
+.parchment-sheet {
+  background-color: var(--parchment-base);
+  background-image: 
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.25) 0%, rgba(205, 185, 145, 0.35) 85%, rgba(145, 120, 80, 0.45) 100%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='0.12' filter='url(%23paperNoise)'/%3E%3C/svg%3E");
+  color: var(--ink-primary);
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.85),
+    0 4px 15px rgba(0, 0, 0, 0.5),
+    inset 0 0 35px rgba(110, 80, 45, 0.25);
+  border: 1px solid var(--parchment-border);
+}
+
+/* Center Crease / Gutter in Open Book */
+.book-gutter-shadow {
+  background: linear-gradient(90deg, 
+    rgba(30, 20, 10, 0.35) 0%, 
+    rgba(20, 10, 5, 0.65) 50%, 
+    rgba(30, 20, 10, 0.35) 100%
+  );
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Ornamental Drop Cap */
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 3.8rem;
+  line-height: 0.85;
+  padding-top: 4px;
+  padding-right: 12px;
+  padding-bottom: 2px;
+  color: #5a1a1f;
+  text-shadow: 1px 1px 0 rgba(212, 175, 55, 0.6);
+  font-weight: 700;
+}
+
+/* Custom Archival Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #15100b;
+}
+::-webkit-scrollbar-thumb {
+  background: #3c2a1c;
+  border-radius: 2px;
+  border: 1px solid #5a3f2b;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5a3f2b;
+}
+
+/* Vintage Brass Catalog Drawer Pull */
+.brass-handle {
+  background: linear-gradient(180deg, #d3b169 0%, #9a7834 60%, #684f1e 100%);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    0 2px 5px rgba(0, 0, 0, 0.8);
+  border: 1px solid #4a3713;
+}
+
+/* Bookmark Ribbon */
+.silk-ribbon {
+  background: linear-gradient(90deg, #7a1f26 0%, #9e2a33 50%, #5c141a 100%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive & Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
