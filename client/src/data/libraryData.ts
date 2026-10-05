@@ -15,6 +15,7 @@ export const initialBook: Book = {
       order: 1,
       mood: "Solitude, Nightfall, and Unspoken Truths",
       accentColor: "#5a1a1f",
+      deletedAt: null,
       spineStyle: {
         height: 385,
         width: 50,
@@ -29,11 +30,15 @@ export const initialBook: Book = {
           chapterId: "chap-01",
           title: "On What We Leave in Unlit Rooms",
           readingTime: 4,
-          dateWritten: "2024-11-14",
+          dateWritten: "2024-11-14 23:45",
           published: true,
+          isDraft: false,
+          visibility: "PUBLIC",
+          mood: "Melancholic Stillness",
           order: 1,
           tags: ["Solitude", "Memory", "Stillness"],
           oneLineLesson: "The silence you avoid is not empty; it is simply crowded with the conversations you refuse to have with yourself.",
+          deletedAt: null,
           body: `For the better part of youth, silence feels like an indictment. We leave radio receivers hissing on empty counters, summon digital voices through glowing rectangles, and fill our schedules with frantic pledges of allegiance to strangers. We treat an unencumbered evening as an architectural flaw in the day—something that must be boarded up before the cold drafts seep in.
 
 Yet the draft was never cold; it was only clear.
@@ -53,11 +58,15 @@ Sit there until the agitation subsides like stirred silt in a glass of well wate
           chapterId: "chap-01",
           title: "The Ledger of Small Debts",
           readingTime: 5,
-          dateWritten: "2025-01-22",
+          dateWritten: "2025-01-22 01:15",
           published: true,
+          isDraft: false,
+          visibility: "PRIVATE",
+          mood: "Heavy Regret",
           order: 2,
           tags: ["Memory", "Time", "Grace"],
           oneLineLesson: "Pride will keep your hands warm in the cold, but it will never build you a hearth.",
+          deletedAt: null,
           body: `Most estrangements between civilized people do not begin with betrayal. Betrayal is too theatrical, too distinct; it carries the clean severity of a blade. Estrangement, rather, is like moisture seeping into untended floorboards—a silent rot nurtured by petty pride and unreturned letters.
 
 We keep meticulous mental ledgers:
@@ -84,6 +93,7 @@ Tear up the ledger. Write the letter without requiring a receipt. If they meet y
       order: 2,
       mood: "Endurance, Heavy Work, and Winter Dusk",
       accentColor: "#1f2d24",
+      deletedAt: null,
       spineStyle: {
         height: 415,
         width: 54,
@@ -98,11 +108,15 @@ Tear up the ledger. Write the letter without requiring a receipt. If they meet y
           chapterId: "chap-02",
           title: "The Art of Slow Burning",
           readingTime: 6,
-          dateWritten: "2025-04-18",
+          dateWritten: "2025-04-18 22:30",
           published: true,
+          isDraft: false,
+          visibility: "PUBLIC",
+          mood: "Fierce Focus",
           order: 1,
           tags: ["Discipline", "Endurance", "Work"],
           oneLineLesson: "Urgency is often cowardice masquerading as passion; endurance is the only proof of devotion that history respects.",
+          deletedAt: null,
           body: `We live in a culture intoxicated by ignition. Everyone wants the blinding flash, the explosive ascent, the overnight revelation that renders ten years of quiet labour obsolete. Dry twigs crackle with astonishing noise; they shoot crimson sparks toward the sky and illuminate the clearing with wild drama.
 
 And within four minutes, they are gray ash.
@@ -122,11 +136,15 @@ Cease measuring your days by whether someone noticed your sweat. Build your life
           chapterId: "chap-02",
           title: "Forgiving the Earlier Self",
           readingTime: 5,
-          dateWritten: "2025-08-30",
+          dateWritten: "2025-08-30 00:20",
           published: true,
+          isDraft: false,
+          visibility: "PRIVATE",
+          mood: "Tender Grace",
           order: 2,
           tags: ["Grace", "Identity", "Time"],
           oneLineLesson: "You cannot condemn the traveler for taking the crooked trail when the road was obscured by night.",
+          deletedAt: null,
           body: `It is dreadfully easy to summon the person you were seven years ago and conduct a ruthless tribunal in the privacy of your skull. You inspect their missteps with modern eyes. You condemn their poor choices, their naive allegiances, their desperate attempts to be loved by people who were unworthy of their devotion.
 
 *“How could I have been so blind?”* we whisper into the ceiling at two in the morning.
@@ -152,6 +170,7 @@ Close the tribunal. Thank that weary, bruised traveler for surviving the trek. T
       order: 3,
       mood: "Mourning, Impermanence, and Lingering Shadows",
       accentColor: "#2b1b12",
+      deletedAt: null,
       spineStyle: {
         height: 365,
         width: 46,
@@ -166,11 +185,15 @@ Close the tribunal. Thank that weary, bruised traveler for surviving the trek. T
           chapterId: "chap-03",
           title: "The Geography of an Empty Chair",
           readingTime: 4,
-          dateWritten: "2025-10-12",
+          dateWritten: "2025-10-12 21:10",
           published: true,
+          isDraft: false,
+          visibility: "PRIVATE",
+          mood: "Sorrowful Remembrance",
           order: 1,
           tags: ["Memory", "Solitude", "Grief"],
           oneLineLesson: "Grief is love with no place to lay its head, seeking shelter in the hollows left behind.",
+          deletedAt: null,
           body: `In every house with history, there is a piece of furniture that ceases to be wood and cloth. It becomes an anchor. You walk past it without looking, yet your body tilts subtly away from it, as though entering a gravitational field.
 
 We expect grief to strike like thunder. Instead, it arrives in the quietest hours—when you reach for a brand of tea you have not brewed in three years, or when a sudden slant of autumn sunlight cuts across the rug at four in the afternoon.
@@ -190,6 +213,7 @@ And in that deliberate limp, there is profound reverence. You carry those who le
       order: 4,
       mood: "Quiet Convictions, Duty, and Midnight Resolve",
       accentColor: "#141923",
+      deletedAt: null,
       spineStyle: {
         height: 395,
         width: 58,
@@ -204,11 +228,15 @@ And in that deliberate limp, there is profound reverence. You carry those who le
           chapterId: "chap-04",
           title: "The Dignity of the Unspoken",
           readingTime: 5,
-          dateWritten: "2025-12-04",
+          dateWritten: "2025-12-04 23:15",
           published: true,
+          isDraft: false,
+          visibility: "PRIVATE",
+          mood: "Steely Conviction",
           order: 1,
           tags: ["Discipline", "Identity", "Conviction"],
           oneLineLesson: "A conviction that requires constant public validation is not a conviction; it is an ornament.",
+          deletedAt: null,
           body: `We inhabit an age that penalizes discretion. Every secret must be monetized; every private heartbreak must be packaged as educational content; every charitable gesture must be photographed under flattering lights.
 
 To hold something back—to keep a sacrifice between yourself and the stone walls—is regarded as eccentric, or worse, wasteful.

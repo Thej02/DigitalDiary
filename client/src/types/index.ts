@@ -1,3 +1,5 @@
+export type Visibility = 'PRIVATE' | 'PUBLIC';
+
 export interface Tag {
   id: string;
   name: string;
@@ -8,20 +10,26 @@ export interface Entry {
   chapterId: string;
   title: string;
   body: string;
-  oneLineLesson: string;
-  dateWritten: string;
+  oneLineLesson?: string;
+  dateWritten: string; // ISO date string or YYYY-MM-DD HH:mm
   readingTime: number; // in minutes
   published: boolean;
+  isDraft: boolean;
+  visibility: Visibility;
+  mood?: string;
   order: number;
   tags: string[];
+  deletedAt?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface SpineVisual {
-  height: number;      // px, e.g. 360 - 410
-  width: number;       // px, e.g. 44 - 56
+  height: number;      // px, e.g. 360 - 415
+  width: number;       // px, e.g. 44 - 58
   pattern: 'embossed-ribs' | 'woven-cloth' | 'aged-calfskin' | 'gold-tooled';
   foilColor: string;
-  leatherTone: 'oxblood' | 'forest' | 'walnut' | 'midnight';
+  leatherTone: 'oxblood' | 'forest' | 'walnut' | 'midnight' | 'plum' | 'gold';
 }
 
 export interface Chapter {
@@ -34,6 +42,9 @@ export interface Chapter {
   epigraph: string;
   spineStyle: SpineVisual;
   entries: Entry[];
+  deletedAt?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface Book {
@@ -47,3 +58,15 @@ export interface Book {
 }
 
 export type AtmosphereMode = 'lamp' | 'candlelight';
+
+export interface DraftState {
+  title: string;
+  body: string;
+  chapterId: string;
+  visibility: Visibility;
+  mood: string;
+  tags: string;
+  oneLineLesson: string;
+  dateWritten: string;
+  lastSavedAt?: string;
+}

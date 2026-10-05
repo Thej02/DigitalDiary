@@ -7,6 +7,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum Visibility {
+  PRIVATE
+  PUBLIC
+}
+
 model Book {
   id          String    @id @default(uuid())
   title       String
@@ -20,38 +25,49 @@ model Book {
 }
 
 model Chapter {
-  id          String   @id @default(uuid())
+  id          String    @id @default(uuid())
   bookId      String
-  book        Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  book        Book      @relation(fields: [bookId], references: [id], onDelete: Cascade)
   title       String
-  order       Int      @default(0)
-  mood        String?  // e.g., "Melancholy & Stillness", "Quiet Convictions"
-  accentColor String?  // e.g., "#5a1a1f" (oxblood), "#1f2d24" (forest cloth), "#2a221b" (worn calfskin)
-  epigraph    String?  @db.Text
+  order       Int       @default(0)
+  mood        String?   // e.g. "Solitude, Nightfall, and Unspoken Truths"
+  accentColor String?   // e.g. "#5a1a1f" (oxblood), "#1f2d24" (forest cloth)
+  texture     String?   @default("embossed-ribs") // "embossed-ribs" | "woven-cloth" | "aged-calfskin" | "gold-tooled"
+  spineWidth  Int?      @default(50)
+  spineHeight Int?      @default(385)
+  epigraph    String?   @db.Text
   entries     Entry[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime? // Soft delete: discarded to Trash for 30 days
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 
   @@index([bookId])
+  @@index([deletedAt])
 }
 
 model Entry {
-  id            String    @id @default(uuid())
+  id            String     @id @default(uuid())
   chapterId     String
-  chapter       Chapter   @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  chapter       Chapter    @relation(fields: [chapterId], references: [id], onDelete: Cascade)
   title         String
-  body          String    @db.Text
-  oneLineLesson String    @db.Text
-  dateWritten   DateTime  @default(now())
-  readingTime   Int       @default(4) // estimated reading time in minutes
-  published     Boolean   @default(true)
-  order         Int       @default(0)
-  tags          Tag[]     @relation("EntryTags")
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  body          String     @db.Text
+  oneLineLesson String?    @db.Text
+  dateWritten   DateTime   @default(now())
+  readingTime   Int        @default(4) // estimated reading time in minutes
+  published     Boolean    @default(true)
+  isDraft       Boolean    @default(false)
+  visibility    Visibility @default(PRIVATE)
+  mood          String?    // e.g. "Reflective Solitude", "Winter Dusk"
+  order         Int        @default(0)
+  tags          Tag[]      @relation("EntryTags")
+  deletedAt     DateTime?  // Soft delete: discarded to Trash for 30 days
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 
   @@index([chapterId])
   @@index([published])
+  @@index([visibility])
+  @@index([deletedAt])
   @@index([dateWritten])
 }
 
